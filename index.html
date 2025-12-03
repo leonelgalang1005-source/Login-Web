@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function showForm(formName) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('forgotForm').style.display = 'none';
+            document.getElementById(formName).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Login Form -->
+    <form id="loginForm" action="login" method="post">
+        <h2>Login</h2>
+        <input type="text" name="username" placeholder="Enter Username" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+        <p>
+            <a href="javascript:void(0)" onclick="showForm('signupForm')">Sign Up</a> | 
+            <a href="javascript:void(0)" onclick="showForm('forgotForm')">Forgot Password?</a>
+        </p>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm" action="signup" method="post" style="display:none;">
+        <h2>Sign Up</h2>
+        <input type="text" name="username" placeholder="Choose Username" required>
+        <input type="password" name="password" placeholder="Choose Password" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Register</button>
+        <p>
+            <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
+        </p>
+    </form>
+
+    <!-- Forgot Password Form -->
+    <form id="forgotForm" action="forgot" method="post" style="display:none;">
+        <h2>Forgot Password</h2>
+        <input type="email" name="email" placeholder="Enter your Email" required>
+        <button type="submit">Reset Password</button>
+        <p>
+            <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
+        </p>
+    </form>
+
+</div>
+
+</body>
+</html>
