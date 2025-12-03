@@ -1,24 +1,37 @@
 import java.io.IOException;
-import jakarta.servlet.ServletException;
+import java.sql.*;
+import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/signup")
 public class SignUpServlet extends HttpServlet {
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String user = request.getParameter("username");
-        String pass = request.getParameter("password");
+        String username = request.getParameter("username");
         String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-        // Demo: just print; later you can store in DB
-        response.getWriter().println("User Registered Successfully!");
-        response.getWriter().println("Username: " + user);
-        response.getWriter().println("Email: " + email);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
+            );
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ps.setString(3, hashedPassword);
+
+            ps.executeUpdate();
+            response.getWriter().println("Registration successful! <a href='index.html'>Login here</a>");
+
+        } catch (SQLException e) {
+            response.getWriter().println("User already exists or error occurred!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
