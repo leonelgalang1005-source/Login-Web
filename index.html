@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All-in-One Login System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
         function showForm(formName) {
@@ -14,45 +15,47 @@
         }
     </script>
 </head>
-<body>
+<body class="bg-light">
 
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-sm" style="width: 350px;">
 
-    <!-- Login Form -->
-    <form id="loginForm" action="login" method="post">
-        <h2>Login</h2>
-        <input type="text" name="username" placeholder="Enter Username" required>
-        <input type="password" name="password" placeholder="Enter Password" required>
-        <button type="submit">Login</button>
-        <p>
-            <a href="javascript:void(0)" onclick="showForm('signupForm')">Sign Up</a> | 
-            <a href="javascript:void(0)" onclick="showForm('forgotForm')">Forgot Password?</a>
-        </p>
-    </form>
+        <!-- Login Form -->
+        <form id="loginForm" action="login" method="post">
+            <h3 class="text-center mb-3">Login</h3>
+            <input type="text" name="username" class="form-control mb-2" placeholder="Username" required>
+            <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+            <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+            <div class="text-center">
+                <a href="javascript:void(0)" onclick="showForm('signupForm')">Sign Up</a> | 
+                <a href="javascript:void(0)" onclick="showForm('forgotForm')">Forgot Password?</a>
+            </div>
+        </form>
 
-    <!-- Sign Up Form -->
-    <form id="signupForm" action="signup" method="post" style="display:none;">
-        <h2>Sign Up</h2>
-        <input type="text" name="username" placeholder="Choose Username" required>
-        <input type="password" name="password" placeholder="Choose Password" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <button type="submit">Register</button>
-        <p>
-            <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
-        </p>
-    </form>
+        <!-- Sign Up Form -->
+        <form id="signupForm" action="signup" method="post" style="display:none;">
+            <h3 class="text-center mb-3">Sign Up</h3>
+            <input type="text" name="username" class="form-control mb-2" placeholder="Username" required>
+            <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
+            <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+            <button type="submit" class="btn btn-success w-100 mb-2">Register</button>
+            <div class="text-center">
+                <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
+            </div>
+        </form>
 
-    <!-- Forgot Password Form -->
-    <form id="forgotForm" action="forgot" method="post" style="display:none;">
-        <h2>Forgot Password</h2>
-        <input type="email" name="email" placeholder="Enter your Email" required>
-        <button type="submit">Reset Password</button>
-        <p>
-            <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
-        </p>
-    </form>
+        <!-- Forgot Password Form -->
+        <form id="forgotForm" action="forgot" method="post" style="display:none;">
+            <h3 class="text-center mb-3">Forgot Password</h3>
+            <input type="email" name="email" class="form-control mb-3" placeholder="Enter your Email" required>
+            <button type="submit" class="btn btn-warning w-100 mb-2">Reset Password</button>
+            <div class="text-center">
+                <a href="javascript:void(0)" onclick="showForm('loginForm')">Back to Login</a>
+            </div>
+        </form>
 
+    </div>
 </div>
 
 </body>
-</html>
+        </html>
